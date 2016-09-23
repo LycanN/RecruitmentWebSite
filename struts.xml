@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="a1" extends="struts-default">
+		<action name="login" class="com.soft.web.LoginAction" method="login">
+			<result name="success">/applicant.jsp</result>
+			<result name="error">/login.html</result>
+		</action>
+		<action name="register" class="com.soft.web.RegisterAction">
+			<result name="success">/login.html</result>
+			<result name="error">/register.html</result>
+		</action>
+		<action name="check" class="com.soft.web.CheckAction">
+			<result name="success">/register.html</result>
+		</action>
+		<action name="resume" class="com.soft.web.ResumeAction">
+			<result name="success">/resume.html</result>
+		</action>
+		<action name="FormDownload" class="com.soft.web.FormAction" method="downloadForm">
+			<result name="success" type="stream">
+				<!--文件类型，application/octet-stream是不限制类型 -->
+				<param name="contentType">application/octet-stream;charset=ISO8859-1</param>
+				<!--文件对应的流对象, 与action中流对象名保持一致(自动去找Action中的getInputStream方法) -->
+				<param name="inputName">fileInputStream</param>
+				<!--发送给客户端的文件名${fileName} 保持与action中文件名保持一致 (调用该Action中的getFileName方法) 
+					contentDisposition默认是 inline（内联的), 比如说下载的文件是文本类型的，就直接在网页上打开，不能直接打开的才会打开下载框自己选择 
+					attachment :下载时会打开下载框 fileName="${fileName}" :在这定义的名字是一个动态的，该名字是显示在下载框上的文件名字 -->
+				<param name="contentDisposition">attachment;fileName="${fileName}"</param>
+				<!--缓冲区大小 -->
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="MyFormDownload" class="com.soft.web.FormAction" method="downloadMyForm">
+			<result name="success" type="stream">
+				<!--文件类型，application/octet-stream是不限制类型 -->
+				<param name="contentType">application/octet-stream;charset=ISO8859-1</param>
+				<!--文件对应的流对象, 与action中流对象名保持一致(自动去找Action中的getInputStream方法) -->
+				<param name="inputName">fileInputStream</param>
+				<!--发送给客户端的文件名${fileName} 保持与action中文件名保持一致 (调用该Action中的getFileName方法) 
+					contentDisposition默认是 inline（内联的), 比如说下载的文件是文本类型的，就直接在网页上打开，不能直接打开的才会打开下载框自己选择 
+					attachment :下载时会打开下载框 fileName="${fileName}" :在这定义的名字是一个动态的，该名字是显示在下载框上的文件名字 -->
+				<param name="contentDisposition">attachment;fileName="${fileName}"</param>
+				<!--缓冲区大小 -->
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="pageControl" class="com.soft.web.PageAction" method="getPage">
+			<result name="success">/enterprise.jsp</result>
+		</action>
+		<action name="getHotDuty" class="com.soft.web.PositionAction" method="getHotDuty">
+			<result name="success">/applicant.jsp</result>
+		</action>
+		<action name="getNewDuty" class="com.soft.web.PositionAction" method="getNewDuty">
+			<result name="success">/applicant.jsp</result>
+		</action>
+		<action name="pickDuty" class="com.soft.web.PickAction" method="pickDuty">
+			<result name="success">/position.jsp</result>
+		</action>
+	</package>
+
+</struts>    
